@@ -58,8 +58,17 @@ export default [
     meta: { },
     name: 'Root',
     redirect: {
-      name: 'Dashboard'
+      name: 'Migrate'
     }
+  },
+  {
+    path: '/migrate',
+    meta: { breadcrumb: true },
+    name: 'Migrate',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/Migrate.vue`
+    )
   },
   {
     path: '/dashboard',
