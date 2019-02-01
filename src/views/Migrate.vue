@@ -4,14 +4,7 @@
       
       <v-layout row wrap>
         <!-- mini statistic start  icon="fa fa-facebook"-->
-        <v-flex  xs12>
-                 
-                 
-                    <v-text-field
-                      label="changeNum"
-                      v-bind:value="num"></v-text-field>
-                  
-        </v-flex>
+       
         <v-flex lg3 sm6 xs12>
           <mini-statistic
             icon=""
@@ -59,6 +52,8 @@
 <script>
 import axios from 'axios'
 import API from '@/api';
+import SockJS from 'sockjs-client'
+import Stomp from 'stompjs'
 
 import EChart from '@/components/chart/echart';
 import MiniStatistic from '@/components/widgets/statistic/MiniStatistic';
@@ -75,6 +70,7 @@ import BoxChart from '@/components/widgets/chart/BoxChart';
 import ChatWindow from '@/components/chat/ChatWindow';
 import CircleStatistic from '@/components/widgets/statistic/CircleStatistic';
 import LinearStatistic from '@/components/widgets/statistic/LinearStatistic';
+import { send } from 'q';
 export default {
   components: {
     VWidget,
@@ -86,7 +82,8 @@ export default {
   },
   data: () => ({
     color: Material ,
-    num: "5"
+    num: "5",
+    stompClient: ''
   }),
   computed: {
     activity () {
@@ -126,12 +123,54 @@ export default {
   },
   mounted: function () {
       const self = this
-      setInterval(function () {
+      // setInterval(function () {
        
-         self.num = Math.floor(Math.random() * 100) + "";
-         console.log('updating ticker ' + self.num);
-      }, 1000)
+      //    self.num = Math.floor(Math.random() * 100) + "";
+      //    console.log('updating ticker ' + self.num);
+      // }, 1000)
+      this.toConnect()
+      // this.send()
+      console.log("mounted")
   }, 
+  methods:{
+     send() {
+        console.log("thisss : " + this.stompClient)
+        let messageJson = JSON.stringify({"name": 'message'});
+        this.stompClient.send("/app/hello", {}, messageJson);
+        console.log("/app/sendTest 你发送的消息:" + message);
+      },
+      onMessageReceived(r){
+        console.log(r)
+      },
+      onConnected(){
+          this.stompClient.subscribe('/topic/public', this.onMessageReceived);
+
+        // Tell your username to the server
+          // this.stompClient.send("/app/chat.addUser"
+          //   ,{}
+          //   ,JSON.stringify({sender: username, type: 'JOIN'}))
+
+      
+      },
+      onError(e){
+          console.log(e)
+      },
+      
+      toConnect() {
+        // 建立连接对象（还未发起连接）
+        var socket = new SockJS('http://localhost:8090/ws');
+        this.stompClient = Stomp.over(socket);
+
+        this.stompClient.connect({}, this.onConnected, this.onError);
+       
+        
+      },
+      
+  },
+  created(){
+      // this.send()
+      console.log("created")
+  }
   // mounted(){
   //    this.num =  Math.floor(Math.random() * 100) + "";
   //    function abc(){
