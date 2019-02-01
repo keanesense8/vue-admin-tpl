@@ -1,543 +1,484 @@
 export default [
-
   {
-    path: '*',
+    path: "*",
     meta: {
-      public: true,
+      public: true
     },
     redirect: {
-      path: '/404'
-    }
-  },  
-  {
-    path: '/404',
-    meta: {
-      public: true,
-    },
-    name: 'NotFound',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/NotFound.vue`
-    )
-  },
-  {
-    path: '/403',
-    meta: {
-      public: true,
-    },
-    name: 'AccessDenied',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/Deny.vue`
-    )
-  },
-  {
-    path: '/500',
-    meta: {
-      public: true,
-    },
-    name: 'ServerError',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/Error.vue`
-    )
-  },
-  {
-    path: '/login',
-    meta: {
-      public: true,
-    },
-    name: 'Login',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/Login.vue`
-    )
-  },
-  {
-    path: '/',
-    meta: { },
-    name: 'Root',
-    redirect: {
-      name: 'Migrate'
+      path: "/404"
     }
   },
   {
-    path: '/migrate',
-    meta: { breadcrumb: true },
-    name: 'Migrate',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/Migrate.vue`
-    )
+    path: "/404",
+    meta: {
+      public: true
+    },
+    name: "NotFound",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/NotFound.vue`)
   },
   {
-    path: '/dashboard',
+    path: "/403",
+    meta: {
+      public: true
+    },
+    name: "AccessDenied",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/Deny.vue`)
+  },
+  {
+    path: "/500",
+    meta: {
+      public: true
+    },
+    name: "ServerError",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/Error.vue`)
+  },
+  {
+    path: "/login",
+    meta: {
+      public: true
+    },
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/Login.vue`)
+  },
+  {
+    path: "/",
+    meta: {},
+    name: "Root",
+    redirect: {
+      name: "Migrate"
+    }
+  },
+  {
+    path: "/migrate",
     meta: { breadcrumb: true },
-    name: 'Dashboard',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/Dashboard.vue`
-    )
+    name: "Migrate",
+    component: () => import(`@/views/Migrate.vue`)
+  },
+  {
+    path: "/dashboard",
+    meta: { breadcrumb: true },
+    name: "Dashboard",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/Dashboard.vue`)
   },
 
   {
-    path: '/media',
-    meta: { },
-    name: 'Media',
-    props: (route) => ({ type: route.query.type }),
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/Media.vue`
-    )
-  },  
+    path: "/media",
+    meta: {},
+    name: "Media",
+    props: route => ({ type: route.query.type }),
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/Media.vue`)
+  },
   {
-    path: '/chat',
+    path: "/chat",
     meta: {
-      public: true,
+      public: true
     },
-    name: 'Chat',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/components/chat/ChatLayout.vue`
-    ),
+    name: "Chat",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/components/chat/ChatLayout.vue`),
     redirect: {
-      path: '/chat/messaging'
+      path: "/chat/messaging"
     },
     children: [
       {
-        path: '/chat/messaging/:uuid?',
+        path: "/chat/messaging/:uuid?",
         meta: {
-          public: true,
+          public: true
         },
-        name: 'ChatMessaging',
+        name: "ChatMessaging",
         props: true,
         components: {
-          default: () => import(
-            /* webpackChunkName: "routes" */
-            `@/components/chat/ChatMessaging.vue`
-          ),  
-        }   
+          default: () =>
+            import(/* webpackChunkName: "routes" */
+            `@/components/chat/ChatMessaging.vue`)
+        }
       },
       {
-        path: '/chat/contact/:uuid?',
+        path: "/chat/contact/:uuid?",
         meta: {
-          public: true,
+          public: true
         },
-        name: 'ChatContact',
+        name: "ChatContact",
         components: {
-          default: () => import(
-            /* webpackChunkName: "routes" */
-            `@/components/chat/ChatContact.vue`
-          ),  
-
-        }     
-      }             
+          default: () =>
+            import(/* webpackChunkName: "routes" */
+            `@/components/chat/ChatContact.vue`)
+        }
+      }
     ]
-  },    
+  },
   {
-    path: '/mail',
+    path: "/mail",
     meta: {
-      public: true,
+      public: true
     },
-    name: 'Mail',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/components/email/Layout.vue`
-    ),
+    name: "Mail",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/components/email/Layout.vue`),
     redirect: {
-      path: '/mail/all'
+      path: "/mail/all"
     },
     children: [
       {
-        path: '/mail/:mailType',
+        path: "/mail/:mailType",
         meta: {
-          public: true,
+          public: true
         },
-        name: 'MailIndex',
-        component: () => import(
-          /* webpackChunkName: "routes" */
-          `@/components/email/List.vue`
-        ),        
+        name: "MailIndex",
+        component: () =>
+          import(/* webpackChunkName: "routes" */
+          `@/components/email/List.vue`)
       },
       {
-        path: '/mail/0/:uuid',
+        path: "/mail/0/:uuid",
         meta: {
-          public: true,
+          public: true
         },
-        name: 'MailDetail',
-        component: () => import(
-          /* webpackChunkName: "routes" */
-          `@/components/email/Reply.vue`
-        ),        
-      }      
+        name: "MailDetail",
+        component: () =>
+          import(/* webpackChunkName: "routes" */
+          `@/components/email/Reply.vue`)
+      }
     ]
-  },  
-  {
-    path: '/components/alert',
-    meta: { breadcrumb: true },
-    name: 'components/alerts',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Alert.vue`
-    )
   },
   {
-    path: '/components/avatar',
+    path: "/components/alert",
     meta: { breadcrumb: true },
-    name: 'components/avatars',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Avatar.vue`
-    )
+    name: "components/alerts",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Alert.vue`)
   },
   {
-    path: '/components/badge',
+    path: "/components/avatar",
     meta: { breadcrumb: true },
-    name: 'components/badges',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Badge.vue`
-    )
+    name: "components/avatars",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Avatar.vue`)
   },
   {
-    path: '/components/button',
+    path: "/components/badge",
     meta: { breadcrumb: true },
-    name: 'components/buttons',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Button.vue`
-    )
+    name: "components/badges",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Badge.vue`)
   },
   {
-    path: '/components/parallax',
+    path: "/components/button",
     meta: { breadcrumb: true },
-    name: 'components/parallax',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Parallax.vue`
-    )
+    name: "components/buttons",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Button.vue`)
   },
   {
-    path: '/components/snackbar',
+    path: "/components/parallax",
     meta: { breadcrumb: true },
-    name: 'components/snackbar',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Snackbar.vue`
-    )
+    name: "components/parallax",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Parallax.vue`)
   },
   {
-    path: '/components/chip',
+    path: "/components/snackbar",
     meta: { breadcrumb: true },
-    name: 'components/chips',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Chip.vue`
-    )
+    name: "components/snackbar",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Snackbar.vue`)
   },
   {
-    path: '/components/card',
+    path: "/components/chip",
     meta: { breadcrumb: true },
-    name: 'components/cards',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Cards.vue`
-    )
+    name: "components/chips",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Chip.vue`)
   },
   {
-    path: '/components/table',
+    path: "/components/card",
     meta: { breadcrumb: true },
-    name: 'components/tables',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Tables.vue`
-    )
+    name: "components/cards",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Cards.vue`)
   },
   {
-    path: '/components/carousel',
+    path: "/components/table",
     meta: { breadcrumb: true },
-    name: 'components/carousels',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Carousels.vue`
-    )
+    name: "components/tables",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Tables.vue`)
   },
   {
-    path: '/components/dialog',
+    path: "/components/carousel",
     meta: { breadcrumb: true },
-    name: 'components/dialogs',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Dialogs.vue`
-    )
+    name: "components/carousels",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Carousels.vue`)
   },
   {
-    path: '/components/icon',
+    path: "/components/dialog",
     meta: { breadcrumb: true },
-    name: 'components/icons',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Icon.vue`
-    )
+    name: "components/dialogs",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Dialogs.vue`)
   },
   {
-    path: '/components/progress',
+    path: "/components/icon",
     meta: { breadcrumb: true },
-    name: 'components/progress',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Progress.vue`
-    )
+    name: "components/icons",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Icon.vue`)
   },
   {
-    path: '/components/slider',
+    path: "/components/progress",
     meta: { breadcrumb: true },
-    name: 'components/sliders',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Slider.vue`
-    )
+    name: "components/progress",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Progress.vue`)
   },
   {
-    path: '/components/tooltip',
+    path: "/components/slider",
     meta: { breadcrumb: true },
-    name: 'components/tooltips',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Tooltip.vue`
-    )
+    name: "components/sliders",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Slider.vue`)
   },
   {
-    path: '/components/pagination',
+    path: "/components/tooltip",
     meta: { breadcrumb: true },
-    name: 'components/paginations',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Pagination.vue`
-    )
+    name: "components/tooltips",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Tooltip.vue`)
   },
   {
-    path: '/pickers/datepicker',
+    path: "/components/pagination",
     meta: { breadcrumb: true },
-    name: 'pickers/datepicker',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Datepicker.vue`
-    )
+    name: "components/paginations",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Pagination.vue`)
   },
   {
-    path: '/components/typography',
+    path: "/pickers/datepicker",
     meta: { breadcrumb: true },
-    name: 'components/typography',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Typography.vue`
-    )
+    name: "pickers/datepicker",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Datepicker.vue`)
   },
   {
-    path: '/components/color',
+    path: "/components/typography",
     meta: { breadcrumb: true },
-    name: 'components/color',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Colors.vue`
-    )
+    name: "components/typography",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Typography.vue`)
   },
   {
-    path: '/pickers/timepicker',
+    path: "/components/color",
     meta: { breadcrumb: true },
-    name: 'pickers/timepicker',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/ui/Timepicker.vue`
-    )
+    name: "components/color",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Colors.vue`)
   },
   {
-    path: '/layout/bottomsheets',
+    path: "/pickers/timepicker",
     meta: { breadcrumb: true },
-    name: 'components/bottom-sheets',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/BottomSheets.vue`
-    )
+    name: "pickers/timepicker",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/ui/Timepicker.vue`)
   },
   {
-    path: '/layout/expansion-panel',
+    path: "/layout/bottomsheets",
     meta: { breadcrumb: true },
-    name: 'components/expansion-panels',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/ExpansionPanels.vue`
-    )
+    name: "components/bottom-sheets",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/BottomSheets.vue`)
   },
   {
-    path: '/layout/footer',
+    path: "/layout/expansion-panel",
     meta: { breadcrumb: true },
-    name: 'components/footer',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/Footers.vue`
-    )
+    name: "components/expansion-panels",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/ExpansionPanels.vue`)
   },
   {
-    path: '/layout/timeline',
+    path: "/layout/footer",
     meta: { breadcrumb: true },
-    name: 'components/timeline',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/Timeline.vue`
-    )
+    name: "components/footer",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/Footers.vue`)
   },
   {
-    path: '/layout/list',
+    path: "/layout/timeline",
     meta: { breadcrumb: true },
-    name: 'components/lists',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/Lists.vue`
-    )
+    name: "components/timeline",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/Timeline.vue`)
   },
   {
-    path: '/layout/toolbar',
+    path: "/layout/list",
     meta: { breadcrumb: true },
-    name: 'components/toolbar',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/Toolbar.vue`
-    )
+    name: "components/lists",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/Lists.vue`)
   },
   {
-    path: '/layout/jumbotron',
+    path: "/layout/toolbar",
     meta: { breadcrumb: true },
-    name: 'components/jumbotrons',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/Jumbotrons.vue`
-    )
+    name: "components/toolbar",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/Toolbar.vue`)
   },
   {
-    path: '/layout/menu',
+    path: "/layout/jumbotron",
     meta: { breadcrumb: true },
-    name: 'components/menus',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/Menus.vue`
-    )
+    name: "components/jumbotrons",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/Jumbotrons.vue`)
   },
   {
-    path: '/layout/navigation-drawer',
+    path: "/layout/menu",
     meta: { breadcrumb: true },
-    name: 'components/navigation-drawers',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/NavigationDrawers.vue`
-    )
+    name: "components/menus",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/Menus.vue`)
   },
   {
-    path: '/layout/tabs',
+    path: "/layout/navigation-drawer",
     meta: { breadcrumb: true },
-    name: 'components/tabs',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/layout/Tabs.vue`
-    )
+    name: "components/navigation-drawers",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/NavigationDrawers.vue`)
   },
   {
-    path: '/forms/basic',
+    path: "/layout/tabs",
     meta: { breadcrumb: true },
-    name: 'components/basic-forms',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/form/BasicForms.vue`
-    )
+    name: "components/tabs",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/layout/Tabs.vue`)
   },
   {
-    path: '/forms/selects',
+    path: "/forms/basic",
     meta: { breadcrumb: true },
-    name: 'components/selects',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/form/Selects.vue`
-    )
+    name: "components/basic-forms",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/form/BasicForms.vue`)
   },
   {
-    path: '/forms/editor',
+    path: "/forms/selects",
     meta: { breadcrumb: true },
-    name: 'components/editors',
-    component: () => import(
-      `@/views/form/Editors.vue`
-    )
+    name: "components/selects",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/form/Selects.vue`)
   },
   {
-    path: '/forms/selection-controls',
+    path: "/forms/editor",
     meta: { breadcrumb: true },
-    name: 'components/selection-controls',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/form/SelectionControls.vue`
-    )
+    name: "components/editors",
+    component: () => import(`@/views/form/Editors.vue`)
   },
   {
-    path: '/forms/text-fields',
+    path: "/forms/selection-controls",
     meta: { breadcrumb: true },
-    name: 'components/text-fields',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/form/TextFields.vue`
-    )
+    name: "components/selection-controls",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/form/SelectionControls.vue`)
   },
   {
-    path: '/forms/steppers',
+    path: "/forms/text-fields",
     meta: { breadcrumb: true },
-    name: 'components/steppers',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/form/Steppers.vue`
-    )
+    name: "components/text-fields",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/form/TextFields.vue`)
   },
   {
-    path: '/widgets/social',
+    path: "/forms/steppers",
     meta: { breadcrumb: true },
-    name: 'components/social',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/widgets/Social.vue`
-    )
+    name: "components/steppers",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/form/Steppers.vue`)
   },
   {
-    path: '/widgets/post',
+    path: "/widgets/social",
     meta: { breadcrumb: true },
-    name: 'components/widget-post',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/widgets/Post.vue`
-    )
+    name: "components/social",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/widgets/Social.vue`)
   },
   {
-    path: '/widgets/statistic',
+    path: "/widgets/post",
     meta: { breadcrumb: true },
-    name: 'components/statistic',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/widgets/Statistic.vue`
-    )
+    name: "components/widget-post",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/widgets/Post.vue`)
   },
   {
-    path: '/widgets/chart',
+    path: "/widgets/statistic",
     meta: { breadcrumb: true },
-    name: 'components/chart',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/widgets/Chart.vue`
-    )
+    name: "components/statistic",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/widgets/Statistic.vue`)
   },
   {
-    path: '/widgets/list',
+    path: "/widgets/chart",
     meta: { breadcrumb: true },
-    name: 'components/widget-list',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/widgets/List.vue`
-    )
+    name: "components/chart",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/widgets/Chart.vue`)
   },
+  {
+    path: "/widgets/list",
+    meta: { breadcrumb: true },
+    name: "components/widget-list",
+    component: () =>
+      import(/* webpackChunkName: "routes" */
+      `@/views/widgets/List.vue`)
+  }
 ];

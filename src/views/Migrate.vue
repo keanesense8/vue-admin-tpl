@@ -4,11 +4,19 @@
       
       <v-layout row wrap>
         <!-- mini statistic start  icon="fa fa-facebook"-->
+        <v-flex  xs12>
+                 
+                 
+                    <v-text-field
+                      label="changeNum"
+                      v-bind:value="num"></v-text-field>
+                  
+        </v-flex>
         <v-flex lg3 sm6 xs12>
           <mini-statistic
             icon=""
             title="Uploaded"
-            sub-title="100"
+            v-bind:sub-title="num"
             color="indigo"      
           >
           </mini-statistic>  
@@ -51,6 +59,7 @@
 <script>
 import axios from 'axios'
 import API from '@/api';
+
 import EChart from '@/components/chart/echart';
 import MiniStatistic from '@/components/widgets/statistic/MiniStatistic';
 import PostListCard from '@/components/widgets/card/PostListCard';
@@ -76,7 +85,8 @@ export default {
     LinearStatistic,
   },
   data: () => ({
-    color: Material   
+    color: Material ,
+    num: "5"
   }),
   computed: {
     activity () {
@@ -90,11 +100,14 @@ export default {
     },
     locationData () {
       return API.getLocation;
+    },
+    vnum: function(){
+      return this.num;
     }
   },
   beforeMount() {
     // this.$http.
-    setInterval(test,3000);
+    // setInterval(test,3000);
     function test(){
       var dt = new Date();
       console.log("now: " + dt.getTime());
@@ -107,10 +120,36 @@ export default {
       // this.$http.get('/backend').then(res => {});
       // axios.get("/aaa")
       //   .then(response => {});
-
+      this.num =  Math.floor(Math.random() * 100);
+      console.log("num:" + this.num);
     }
-  }
+  },
+  mounted: function () {
+      const self = this
+      setInterval(function () {
+       
+         self.num = Math.floor(Math.random() * 100) + "";
+         console.log('updating ticker ' + self.num);
+      }, 1000)
+  }, 
+  // mounted(){
+  //    this.num =  Math.floor(Math.random() * 100) + "";
+  //    function abc(){
+  //      this.$num =  Math.floor(Math.random() * 100) + "";
+  //      console.log("now: " + new Date().getTime());
+  //      console.log("num:" + this.$num);
+  //     //  this.$nextTick(function(){
+  //     //  })
+  //    }
+  //    setInterval(abc,3000);
+  // }
+
   
 
 };
 </script>
+<style>
+  #input-usage .v-messages {
+    border: 1px dashed rgba(0,0,0, .4);
+  }
+</style>

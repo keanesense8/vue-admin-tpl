@@ -25,6 +25,12 @@ export default {
     title: String,
     subTitle: String,
     color: String
+  },
+  computed:{
+    dNum () {
+      return this.title
+    }
   }
+
 };
 </script>
