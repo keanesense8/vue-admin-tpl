@@ -19,6 +19,7 @@
     "stompjs": "^2.3.3",
     "vee-validate": "^2.1.4",
     "vue": "^2.5.21",
+    "vue-awesome-countdown": "^1.0.12",
     "vue-axios": "^2.1.4",
     "vue-fullcalendar": "^1.0.9",
     "vue-perfect-scrollbar": "^0.1.0",
@@ -26,6 +27,7 @@
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-socket.io": "^3.0.5",
+    "vue2-flip-countdown": "^0.5.2",
     "vuetify": "^1.3.0",
     "vuex": "^3.0.1"
   },
