@@ -59,7 +59,7 @@
           </v-card>
         </v-flex>
         <v-flex xs3>
-          <v-card dark color="indigo">
+          <v-card dark color="red darken-4">
             <v-card-text class="px-0">错误的节目数：</v-card-text>
           </v-card>
         </v-flex>
@@ -80,7 +80,7 @@
           </v-card>
         </v-flex>
          <v-flex xs3>
-          <v-card dark color="indigo">
+          <v-card dark color="red darken-4">
             <v-card-text class="px-0">{{ migrateData.errorItemCount }}</v-card-text>
           </v-card>
         </v-flex>
@@ -247,7 +247,7 @@ export default {
       
       toConnect() {
         // 建立连接对象（还未发起连接）
-        var socket = new SockJS('http://localhost:8090/ws');
+        let socket = new SockJS('http://61.8.173.88:8090/ws');
         this.stompClient = Stomp.over(socket);
         this.stompClient.connect({}, this.onConnected, this.onError);
       },
