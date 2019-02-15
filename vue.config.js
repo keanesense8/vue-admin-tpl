@@ -8,8 +8,8 @@ module.exports = {
             changeOrigin: true,
             secure: false
           },
-          '/ws/': {
-            target: 'ws://localhost:8090',
+          '^/ws/': {
+            target: 'http://localhost:8090',
             ws: true,
             changeOrigin: true,
             secure: false
